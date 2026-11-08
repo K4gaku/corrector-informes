@@ -1,6 +1,6 @@
 ---
 name: corregir-informes
-description: Corrige tandas de informes de laboratorio en PDF (CFGS LACQ) que el profesor sube al chat, con la rúbrica y la práctica de la biblioteca, y entrega el Excel de notas. Úsala cuando el profesor suba informes, un guion o una rúbrica, pida corregir, cambiar una rúbrica o una práctica, o pida feedback de un alumno.
+description: Corrige tandas de informes de laboratorio en PDF que el profesor sube al chat, con la rúbrica y la práctica de la biblioteca, y entrega el Excel de notas. Úsala cuando el profesor suba informes, un guion o una rúbrica, pida corregir, cambiar una rúbrica o una práctica, o pida feedback de un alumno.
 ---
 
 # Corregir informes de laboratorio

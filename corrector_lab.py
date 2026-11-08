@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Corrector de informes de laboratorio (CFGS LACQ): biblioteca, reglas de corrección y Excel.
+"""Corrector de informes de laboratorio: biblioteca, reglas de corrección y Excel.
 
 Claude corrige los informes en la conversación (skill corregir-informes) y `herramientas.py`
 usa este módulo para validar las correcciones y generar el Excel. No usa ninguna API.

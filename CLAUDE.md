@@ -1,4 +1,4 @@
-# Corrector de informes de laboratorio (CFGS LACQ)
+# Corrector de informes de laboratorio
 
 El profesor sube al chat guiones, rúbricas e informes en PDF y Claude los corrige aquí.
 Para corregir, crear o cambiar prácticas y rúbricas, o dar feedback de un alumno, usa la skill

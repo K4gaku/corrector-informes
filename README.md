@@ -1,19 +1,59 @@
-# Corrector de informes de laboratorio (CFGS LACQ)
+# Corrector de informes de laboratorio
 
-Se usa desde el chat de Claude Code: subes el guion, la rúbrica (Excel) y los informes en PDF, y
-Claude los corrige con tu rúbrica y te devuelve el Excel de notas (una fila por alumno, comentarios
-en las celdas por debajo del máximo, REVISAR en los casos dudosos, total con fórmula, feedback
-general y avisos).
+Corrige informes de prácticas de laboratorio en PDF desde el chat de Claude Code. Subes el guion
+de la práctica, la rúbrica (Excel) y los informes de los alumnos, y Claude los corrige con tu rúbrica
+y te devuelve un Excel de notas: una fila por alumno, comentarios en las celdas por debajo del
+máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y avisos.
+
+## Cómo utilizarlo
+
+### Qué necesitas
+- Una suscripción a Claude que incluya **Claude Code** (Pro o Max). No hace falta clave de API.
+- Una cuenta de **GitHub** (gratis).
+
+### La primera vez
+1. Crea tu propia copia: en esta página, **Use this template → Create a new repository**, y márcala
+   como **Private**. (Si no aparece el botón: **Code → Download ZIP** y sube el contenido a un
+   repositorio privado tuyo.)
+2. Da acceso a Claude a tu copia en **https://claude.ai/connect-github**.
+3. Abre **Claude Code** (app de Claude → Code, o claude.ai/code) e inicia una sesión con tu
+   repositorio seleccionado.
+4. Si tu rúbrica es otra, sube tu Excel y dile qué pestaña usar. Formato esperado de la pestaña:
+   `Bloque | Criterio | Peso | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0)`,
+   como la tabla del final.
+
+### Cada vez que corrijas
+1. Inicia una **sesión nueva** con tu repositorio seleccionado (una práctica por sesión).
+2. Sube los **informes en PDF** y, si la práctica es nueva, el **guion** (vale escaneado; si lleva
+   tu pauta de corrección escrita, mejor).
+3. Pídelo con tus palabras, por ejemplo:
+   > Corrige estos informes de la práctica 3 con la rúbrica Rúbrica_Todo - Informe. Módulo AIN.
+4. Claude te pregunta lo que no tenga claro (qué práctica es, qué no se evalúa…), corrige y te
+   entrega el **Excel**. Te dice cuántos informes ha corregido y cuáles tienen celdas en REVISAR.
+5. Revisa el Excel. Si cambias un criterio («este error vale nivel 1», «las cuestiones no se
+   evalúan»), díselo: lo guarda como regla de la práctica para las siguientes tandas.
+6. Si quieres feedback individual de un alumno, pídelo **en la misma sesión**.
+
+### Privacidad
+Los informes, las correcciones y los Excel de notas **no se suben nunca al repositorio** (los excluye
+`.gitignore`, y Claude lo comprueba antes de cada guardado). Solo se guardan las instrucciones, las
+rúbricas y las reglas de cada práctica, en anónimo. Los guiones en PDF tampoco se suben.
 
 ## Qué hay en la carpeta
 
-- `biblioteca/rubricas/` — rúbricas (importadas de tu Excel; se pueden cambiar pidiéndoselo a Claude).
-- `biblioteca/practicas/<práctica>/` — guion, pauta, valores de referencia, indicaciones y
+- `biblioteca/rubricas/` — rúbricas importadas del Excel.
+- `biblioteca/practicas/<práctica>/practica.json` — pauta, valores de referencia, indicaciones y
   **errores frecuentes** (cómo puntuar cada error típico, para que siempre se puntúe igual).
-- `biblioteca/practicas/<práctica>/tandas/<fecha>/` — cada corrección: informes, corrección de
-  cada alumno (`detalle/`) y el Excel.
 - `.claude/skills/corregir-informes/` — el procedimiento que sigue Claude.
 - `herramientas.py`, `corrector_lab.py` — validan las correcciones y generan el Excel.
+
+## Cómo se corrige
+
+1. Claude lee cada informe, rehace los cálculos con Python y puntúa cada criterio (niveles 0–3 con
+   medios niveles; puntos = peso · nivel / 3), aplicando la pauta y los errores frecuentes.
+2. **Revisión de coherencia**: compara a todos los alumnos de la tanda (mismo error → mismo nivel,
+   sin dobles penalizaciones) y te propone añadir los errores repetidos nuevos a la práctica.
+3. Genera el Excel y te dice cuántos informes ha corregido y cuáles tienen REVISAR.
 
 ## Rúbrica de evaluación (Excel, pestaña «Rúbrica_Todo»)
 
@@ -33,11 +73,3 @@ general y avisos).
 |  | Cuaderno | 25 |  |  |  |  |
 |  | Informe | 75 |  |  |  |  |
 |  | TOTAL | 100 |  |  |  |  |
-
-## Cómo se corrige
-
-1. Claude lee cada informe, rehace los cálculos con Python y puntúa cada criterio (niveles 0–3 con
-   medios niveles; puntos = peso · nivel / 3), aplicando la pauta y los errores frecuentes.
-2. **Revisión de coherencia**: compara a todos los alumnos de la tanda (mismo error → mismo nivel,
-   sin dobles penalizaciones) y te propone añadir los errores repetidos nuevos a la práctica.
-3. Genera el Excel y te dice cuántos informes ha corregido y cuáles tienen REVISAR.
