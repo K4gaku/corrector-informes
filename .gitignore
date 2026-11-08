@@ -1,0 +1,9 @@
+# Datos del alumnado: NUNCA se suben al repositorio
+biblioteca/practicas/*/tandas/
+*.pdf
+*.docx
+# Excel de notas (el de rúbricas sí se sube)
+correccion_*.xlsx
+# Python
+__pycache__/
+.venv/
