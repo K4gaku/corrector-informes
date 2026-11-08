@@ -5,12 +5,13 @@ description: Corrige tandas de informes de laboratorio en PDF que el profesor su
 
 # Corregir informes de laboratorio
 
-El profesor sube los archivos al chat y tú corriges. No hay aplicación ni API: lees los PDF,
-puntúas y `herramientas.py` valida tu trabajo y monta el Excel. Ejecuta todo desde la raíz del
-proyecto. Si falta alguna librería: `pip install -r requirements.txt`.
+El profesor te da los archivos (adjuntos en el chat o con su ruta, p. ej. su carpeta de Descargas) y
+tú corriges. No hay aplicación ni API: lees los PDF, puntúas y `herramientas.py` valida tu trabajo y
+monta el Excel. Ejecuta todo desde la raíz del proyecto. Si falta alguna librería:
+`pip install -r requirements.txt`.
 
-Los archivos que sube el profesor aparecen en la carpeta de subidas de la sesión
-(p. ej. `/root/.claude/uploads/<sesión>/`), con un prefijo aleatorio en el nombre.
+Python: en Mac/Linux usa `python3`; en Windows, `python` o `py` (no `python3`, que puede abrir la
+Microsoft Store). En los comandos de abajo, `python3` significa el que corresponda.
 
 ## 1. Identificar práctica y rúbrica
 
@@ -82,7 +83,8 @@ Anota los errores repetidos que no estén en `errores_frecuentes`.
 python3 herramientas.py excel biblioteca/practicas/<id>/tandas/<fecha> --practica <id> [--rubrica <id>] [--sobre <nota>]
 ```
 
-Si da errores de validación, corrige los JSON y repite. Envía el Excel al profesor con SendUserFile.
+Si da errores de validación, corrige los JSON y repite. Entrega el Excel al profesor (con SendUserFile si
+está disponible; si no, dale la ruta del archivo).
 
 ## 6. Respuesta al profesor
 
@@ -102,8 +104,8 @@ frecuentes). Antes de cada commit:
    las reglas en anónimo («si calcula s = [OH⁻]…»), nunca con el nombre de un alumno.
 3. Commit con un mensaje que diga qué regla o práctica cambia, y push a la rama principal.
 
-Las tandas solo viven durante la sesión: el feedback individual de un alumno se pide en la misma
-sesión de la corrección. Avisa de ello al entregar el Excel.
+Si trabajas en un ordenador del profesor, las tandas se quedan en su carpeta local. En una sesión
+en la nube se pierden al cerrarla: entonces avisa de que el feedback individual se pide en la misma sesión.
 
 Cuando el profesor resuelva un REVISAR o cambie una nota, corrige el JSON, regenera el Excel y
 pregunta si convierte esa decisión en regla de la práctica (`errores_frecuentes` o `indicaciones`).

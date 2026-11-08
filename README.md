@@ -5,45 +5,59 @@ de la práctica, la rúbrica (Excel) y los informes de los alumnos, y Claude los
 y te devuelve un Excel de notas: una fila por alumno, comentarios en las celdas por debajo del
 máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y avisos.
 
-## Cómo utilizarlo
+## Cómo utilizarlo (en tu ordenador)
 
 ### Qué necesitas
 - Una suscripción a Claude que incluya **Claude Code** (Pro o Max). No hace falta clave de API.
-- Una cuenta de **GitHub** (gratis).
+- **Python 3** instalado (para generar el Excel).
+  - **Mac:** normalmente ya viene. Compruébalo en la Terminal con `python3 --version`.
+  - **Windows:** descárgalo de python.org y, al instalar, marca **«Add python.exe to PATH»**.
 
 ### La primera vez
-1. Crea tu propia copia: en esta página, **Use this template → Create a new repository**, y márcala
-   como **Private**. (Si no aparece el botón: **Code → Download ZIP** y sube el contenido a un
-   repositorio privado tuyo.)
-2. Da acceso a Claude a tu copia en **https://claude.ai/connect-github**.
-3. Abre **Claude Code** (app de Claude → Code, o claude.ai/code) e inicia una sesión con tu
-   repositorio seleccionado.
-4. Si tu rúbrica es otra, sube tu Excel y dile qué pestaña usar. Formato esperado de la pestaña:
-   `Bloque | Criterio | Peso | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0)`,
+1. **Descarga la carpeta:** en esta página, **Code → Download ZIP**.
+2. **Descomprímela** en un sitio fijo, por ejemplo en Documentos.
+3. **Ábrela en Claude Code**, de una de estas dos formas:
+   - **App de escritorio de Claude** (claude.ai/download) → sección **Code** → trabajar en local →
+     elige la carpeta descomprimida.
+   - **Terminal:** instala Claude Code (code.claude.com), entra en la carpeta y escribe `claude`.
+     Inicia sesión con tu cuenta de Claude, no con una clave de API.
+4. Escríbele: «¿Qué rúbricas y prácticas tengo?». Si responde con la rúbrica y la práctica de
+   ejemplo, todo funciona. La primera vez instalará las librerías que necesita
+   (`requirements.txt`); acepta los permisos que te pida.
+5. **Si tu rúbrica es otra:** dale tu Excel y dile qué pestaña usar. El formato esperado de la
+   pestaña es `Bloque | Criterio | Peso | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0)`,
    como la tabla del final.
 
 ### Cada vez que corrijas
-1. Inicia una **sesión nueva** con tu repositorio seleccionado (una práctica por sesión).
-2. Sube los **informes en PDF** y, si la práctica es nueva, el **guion** (vale escaneado; si lleva
-   tu pauta de corrección escrita, mejor).
+1. Abre la carpeta en Claude Code y empieza una **conversación nueva** (una práctica por conversación).
+2. Adjunta en el chat los **informes en PDF** o indícale la carpeta donde están. Si la práctica es
+   nueva, dale también el **guion**: vale escaneado y, si lleva tu pauta de corrección escrita, mejor.
 3. Pídelo con tus palabras, por ejemplo:
-   > Corrige estos informes de la práctica 3 con la rúbrica Rúbrica_Todo - Informe. Módulo AIN.
-4. Claude te pregunta lo que no tenga claro (qué práctica es, qué no se evalúa…), corrige y te
-   entrega el **Excel**. Te dice cuántos informes ha corregido y cuáles tienen celdas en REVISAR.
+   > Corrige los informes de la carpeta Descargas/P3 con la práctica 3 del guion Descargas/guion.pdf
+   > y la rúbrica Rúbrica_Todo - Informe. Módulo AIN.
+4. Claude te pregunta lo que no tenga claro (qué práctica es, qué no se evalúa…), corrige y genera el
+   **Excel**. Te dice cuántos informes ha corregido y cuáles tienen celdas en REVISAR. El Excel queda
+   en `biblioteca/practicas/<práctica>/tandas/<fecha>/`.
 5. Revisa el Excel. Si cambias un criterio («este error vale nivel 1», «las cuestiones no se
    evalúan»), díselo: lo guarda como regla de la práctica para las siguientes tandas.
-6. Si quieres feedback individual de un alumno, pídelo **en la misma sesión**.
+6. Para el feedback individual de un alumno, pídeselo cuando quieras: la corrección de cada alumno
+   queda guardada en la carpeta de la tanda.
 
-### Privacidad
-Los informes, las correcciones y los Excel de notas **no se suben nunca al repositorio** (los excluye
-`.gitignore`, y Claude lo comprueba antes de cada guardado). Solo se guardan las instrucciones, las
-rúbricas y las reglas de cada práctica, en anónimo. Los guiones en PDF tampoco se suben.
+### Copia de seguridad y privacidad
+- Todo se guarda en la carpeta `biblioteca/` de tu ordenador: rúbricas, prácticas, reglas y
+  correcciones. **Haz copia de seguridad de ella** de vez en cuando.
+- Los informes y las notas se quedan en tu ordenador. Claude los lee para corregirlos, igual que
+  cualquier archivo que le muestres en una conversación.
+- Si compartes la carpeta con otra persona, comparte solo las reglas: borra antes las subcarpetas
+  `tandas/`, que contienen los informes y las notas de tus alumnos.
 
 ## Qué hay en la carpeta
 
 - `biblioteca/rubricas/` — rúbricas importadas del Excel.
 - `biblioteca/practicas/<práctica>/practica.json` — pauta, valores de referencia, indicaciones y
   **errores frecuentes** (cómo puntuar cada error típico, para que siempre se puntúe igual).
+- `biblioteca/practicas/<práctica>/tandas/<fecha>/` — cada corrección: informes, corrección de cada
+  alumno y el Excel (solo en tu ordenador; no se sube al repositorio).
 - `.claude/skills/corregir-informes/` — el procedimiento que sigue Claude.
 - `herramientas.py`, `corrector_lab.py` — validan las correcciones y generan el Excel.
 
