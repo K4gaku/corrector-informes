@@ -40,6 +40,15 @@ Microsoft Store). En los comandos de abajo, `python3` significa el que correspon
 Crea `biblioteca/practicas/<id>/tandas/<AAAA-MM-DD_HHMM>/informes/` y copia los PDF quitando el prefijo
 aleatorio, con nombres sin espacios ni tildes (APELLIDOS_NOMBRE.pdf).
 
+### Continuar una tanda empezada (p. ej. en otro ordenador)
+
+Si el profesor pide continuar una corrección, busca la tanda en `biblioteca/practicas/<id>/tandas/`
+(la más reciente, salvo que diga otra) y compara los PDF de `informes/` con los JSON de `detalle/`.
+Los informes que ya tienen JSON están corregidos: no los repitas. Corrige solo los que faltan,
+siguiendo las mismas instrucciones (paso 3), y después haz la revisión de coherencia con toda la
+tanda (paso 4b) y genera el Excel. Si faltan PDF que el profesor esperaba, pregúntale (la carpeta
+puede no haber terminado de sincronizarse).
+
 ## 3. Instrucciones exactas
 
 ```bash
