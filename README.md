@@ -71,7 +71,7 @@ máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y av
 ## Cómo se corrige
 
 1. Claude lee cada informe, rehace los cálculos con Python y puntúa cada criterio (niveles 0–3 con
-   medios niveles; puntos = peso · nivel / 3), aplicando la pauta y los errores frecuentes.
+   solo enteros; puntos = peso · nivel / 3), aplicando la pauta y los errores frecuentes.
 2. **Revisión de coherencia**: compara a todos los alumnos de la tanda (mismo error → mismo nivel,
    sin dobles penalizaciones) y te propone añadir los errores repetidos nuevos a la práctica.
 3. Genera el Excel y te dice cuántos informes ha corregido y cuáles tienen REVISAR.

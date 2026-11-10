@@ -109,7 +109,7 @@ def main() -> int:
         if a.cmd == "instrucciones":
             print(core.instrucciones_correccion(rub, pra, a.modulo))
             print("\n\nFORMATO: escribe un JSON por informe en <tanda>/detalle/<nombre_del_pdf_sin_extension>.json "
-                  "que cumpla este esquema (nivel: 0, 0.5, 1, 1.5, 2, 2.5 o 3):\n")
+                  "que cumpla este esquema (nivel: 0, 1, 2 o 3, solo enteros):\n")
             print(json.dumps(core.esquema_correccion(rub), ensure_ascii=False, indent=1))
             return 0
 

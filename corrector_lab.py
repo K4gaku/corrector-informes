@@ -19,7 +19,7 @@ import unicodedata
 from pathlib import Path
 
 
-NIVELES = [0, 0.5, 1, 1.5, 2, 2.5, 3]  # 3 = Sobresaliente ... 0 = Insuficiente; se admiten medios niveles
+NIVELES = [0, 1, 2, 3]  # 3 = Sobresaliente, 2 = Bien, 1 = Suficiente, 0 = Insuficiente (solo valores enteros)
 UMBRAL_SIMILITUD = 0.30  # Jaccard de 6-gramas de palabras, descontando el texto del guion
 
 
@@ -79,7 +79,8 @@ conclusiones se sostienen con ellos.
    Si la práctica trae pautas_correccion del profesor, síguelas: indican qué se evalúa y qué \
 no en cada apartado y tienen prioridad sobre el guion.
 4. Puntúa cada criterio de la rúbrica con un nivel de 0 a 3 (3 Sobresaliente, 2 Bien, \
-1 Suficiente, 0 Insuficiente; usa medios niveles si el informe está entre dos descriptores) y un \
+1 Suficiente, 0 Insuficiente; solo valores enteros: si el informe está entre dos descriptores, elige el \
+que mejor lo describe) y un \
 comentario que cite o localice el pasaje del informe (apartado o página) que lo respalda. Los \
 puntos se calculan como peso·nivel/3.
 5. No penalices dos veces el mismo error: si un dato erróneo arrastra los cálculos, penaliza \
@@ -128,7 +129,7 @@ def esquema_correccion(rubrica: dict) -> dict:
         "criterios": arr(obj({
             "criterio": {"type": "string", "enum": nombres},
             "nivel": {"type": "number", "enum": NIVELES,
-                      "description": "3 Sobresaliente, 2 Bien, 1 Suficiente, 0 Insuficiente; medios niveles si está entre dos descriptores"},
+                      "description": "3 Sobresaliente, 2 Bien, 1 Suficiente, 0 Insuficiente (solo enteros)"},
             "revisar": B,
             "comentario": S,
         })),

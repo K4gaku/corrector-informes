@@ -57,7 +57,9 @@ Para cada PDF:
    Clasifica cada discrepancia en error de cálculo, de datos o de método.
 3. Compara con los valores de referencia y la pauta. Comprueba uno a uno los `errores_frecuentes`
    y, si aparecen, puntúalos exactamente como indican.
-4. Nivel por criterio (0, 0.5, 1, 1.5, 2, 2.5 o 3); los puntos los calcula el script (peso · nivel / 3).
+4. Nivel por criterio, solo valores enteros: 3 Sobresaliente, 2 Bien, 1 Suficiente, 0 Insuficiente. Si el informe
+   está entre dos descriptores, elige el que mejor lo describe (nunca 0,5, 1,5 ni 2,5). Los puntos los
+   calcula el script (peso · nivel / 3).
    Comentario de 1-3 frases: qué falta o qué está mal y dónde (página o apartado); con nivel 3,
    «Completo.». Si algo no se puede leer o es dudoso: `"revisar": true` y explica por qué.
 5. Escribe `detalle/<nombre_del_pdf_sin_extension>.json` con el esquema del paso 3. Opcional:
