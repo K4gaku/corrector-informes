@@ -93,19 +93,19 @@ Si la revisión de coherencia encontró errores repetidos nuevos, añade una lis
 (error · criterio · cómo lo puntuaste) y pregunta si los guardas en la práctica; no los guardes sin
 su confirmación. Si pide feedback individual de un alumno, sácalo de su JSON en `detalle/`.
 
-## 7. Guardar en GitHub (solo reglas, nunca datos de alumnos)
+## 7. La biblioteca es del profesor y no forma parte del agente
 
-El repositorio es privado pero **no debe contener datos del alumnado**. `.gitignore` excluye las tandas
-(informes, correcciones, Excel) y todos los PDF y Word (los guiones pueden llevar nombres a mano).
-Lo que se guarda: procedimiento, scripts, rúbricas y `practica.json` (pauta, indicaciones, errores
-frecuentes). Antes de cada commit:
-1. `git status` y comprueba que no aparece nada de `tandas/`, ningún PDF ni Excel de notas.
-2. Comprueba que `practica.json`, rúbricas e indicaciones **no contienen nombres de alumnos**: escribe
-   las reglas en anónimo («si calcula s = [OH⁻]…»), nunca con el nombre de un alumno.
-3. Commit con un mensaje que diga qué regla o práctica cambia, y push a la rama principal.
+`biblioteca/` (guiones, prácticas, rúbricas, reglas y tandas) es la información personal del profesor:
+vive solo en su ordenador y `.gitignore` la excluye. **Nunca hagas commit de nada de `biblioteca/`**
+ni de PDF, Word o Excel de notas. Los cambios de reglas, rúbricas y prácticas se guardan editando
+sus archivos en `biblioteca/`, sin git.
 
-Si trabajas en un ordenador del profesor, las tandas se quedan en su carpeta local. En una sesión
-en la nube se pierden al cerrarla: entonces avisa de que el feedback individual se pide en la misma sesión.
+Si `biblioteca/` está vacía (primera vez), pide al profesor su Excel de rúbricas y los guiones, y
+créala con los pasos 1-2. Escribe siempre las reglas en anónimo («si calcula s = [OH⁻]…»), nunca con
+el nombre de un alumno.
+
+Solo se hace commit de mejoras del agente base (procedimiento, scripts, README) cuando el profesor
+lo pida; antes, comprueba con `git status` que no entra nada de `biblioteca/`.
 
 Cuando el profesor resuelva un REVISAR o cambie una nota, corrige el JSON, regenera el Excel y
 pregunta si convierte esa decisión en regla de la práctica (`errores_frecuentes` o `indicaciones`).

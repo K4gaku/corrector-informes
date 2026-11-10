@@ -7,3 +7,7 @@ correccion_*.xlsx
 # Python
 __pycache__/
 .venv/
+
+# Biblioteca personal del profesor (guiones, prácticas, rúbricas, reglas y correcciones):
+# vive solo en su ordenador, no forma parte del agente base
+biblioteca/

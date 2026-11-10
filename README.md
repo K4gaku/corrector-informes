@@ -21,12 +21,13 @@ máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y av
      elige la carpeta descomprimida.
    - **Terminal:** instala Claude Code (code.claude.com), entra en la carpeta y escribe `claude`.
      Inicia sesión con tu cuenta de Claude, no con una clave de API.
-4. Escríbele: «¿Qué rúbricas y prácticas tengo?». Si responde con la rúbrica y la práctica de
-   ejemplo, todo funciona. La primera vez instalará las librerías que necesita
+4. **Crea tu biblioteca:** dale tu **Excel de rúbricas** (y dile qué pestaña usar) y los
+   **guiones de tus prácticas**. Claude crea la carpeta `biblioteca/` con tus rúbricas y una ficha por
+   práctica (objetivo, fórmulas, valores de referencia y tu pauta). El formato esperado de la pestaña
+   del Excel es `Bloque | Criterio | Peso | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0)`,
+   como la tabla del final. La primera vez instalará las librerías que necesita
    (`requirements.txt`); acepta los permisos que te pida.
-5. **Si tu rúbrica es otra:** dale tu Excel y dile qué pestaña usar. El formato esperado de la
-   pestaña es `Bloque | Criterio | Peso | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0)`,
-   como la tabla del final.
+5. Comprueba que está todo preguntándole: «¿Qué rúbricas y prácticas tengo?».
 
 ### Cada vez que corrijas
 1. Abre la carpeta en Claude Code y empieza una **conversación nueva** (una práctica por conversación).
@@ -44,22 +45,28 @@ máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y av
    queda guardada en la carpeta de la tanda.
 
 ### Copia de seguridad y privacidad
-- Todo se guarda en la carpeta `biblioteca/` de tu ordenador: rúbricas, prácticas, reglas y
-  correcciones. **Haz copia de seguridad de ella** de vez en cuando.
+- Tu información (rúbricas, guiones, prácticas, reglas y correcciones) se guarda en la carpeta
+  `biblioteca/` de tu ordenador. **No forma parte del agente** y no se sube nunca al repositorio.
+  **Haz copia de seguridad de ella** de vez en cuando; si descargas una versión nueva del agente,
+  copia tu carpeta `biblioteca/` dentro de la nueva.
 - Los informes y las notas se quedan en tu ordenador. Claude los lee para corregirlos, igual que
   cualquier archivo que le muestres en una conversación.
-- Si compartes la carpeta con otra persona, comparte solo las reglas: borra antes las subcarpetas
-  `tandas/`, que contienen los informes y las notas de tus alumnos.
+- Si compartes el agente, comparte este repositorio: no lleva nada tuyo ni de tus alumnos.
 
 ## Qué hay en la carpeta
+
+**El agente** (este repositorio):
+
+- `.claude/skills/corregir-informes/` — el procedimiento que sigue Claude.
+- `herramientas.py`, `corrector_lab.py` — validan las correcciones y generan el Excel.
+
+**Tu biblioteca** (`biblioteca/`, solo en tu ordenador, la crea Claude):
 
 - `biblioteca/rubricas/` — rúbricas importadas del Excel.
 - `biblioteca/practicas/<práctica>/practica.json` — pauta, valores de referencia, indicaciones y
   **errores frecuentes** (cómo puntuar cada error típico, para que siempre se puntúe igual).
 - `biblioteca/practicas/<práctica>/tandas/<fecha>/` — cada corrección: informes, corrección de cada
   alumno y el Excel (solo en tu ordenador; no se sube al repositorio).
-- `.claude/skills/corregir-informes/` — el procedimiento que sigue Claude.
-- `herramientas.py`, `corrector_lab.py` — validan las correcciones y generan el Excel.
 
 ## Cómo se corrige
 
@@ -69,7 +76,7 @@ máximo, REVISAR en los casos dudosos, total con fórmula, feedback general y av
    sin dobles penalizaciones) y te propone añadir los errores repetidos nuevos a la práctica.
 3. Genera el Excel y te dice cuántos informes ha corregido y cuáles tienen REVISAR.
 
-## Rúbrica de evaluación (Excel, pestaña «Rúbrica_Todo»)
+## Ejemplo de rúbrica (formato del Excel)
 
 | Bloque | Criterio | Peso (%) | Sobresaliente (3) | Bien (2) | Suficiente (1) | Insuficiente (0) |
 |---|---|---|---|---|---|---|
